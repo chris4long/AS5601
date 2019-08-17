@@ -140,6 +140,16 @@ class AS5601
             return bitRead( status, 5 ) == 1 ? true : false;
         }
 
+        // query status to find out if magnet is too strong
+        bool magnetTooStrong()
+        {
+            // query status register
+            unsigned char status = this->readRaw8( AS5601::ByteRegister::STATUS );
+
+            // return true if bit 5 is set
+            return bitRead( status, 3 ) == 1 ? true : false;
+        }
+
         // get current magnetic magnitude (12 bit)
         unsigned int getMagnitude()
         {
